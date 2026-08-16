@@ -18,9 +18,12 @@ digital_twin_layers:
     # center (0.20, 0, 0.25), size (0.40, 0.40, 0.50)
     boundary: '[{"x":0.20,"y":0.0,"z":0.25,"size_x":0.40,"size_y":0.40,"size_z":0.50,"r":0.2,"g":0.8,"b":0.3,"a":0.12,"label":"workspace"}]'
 
-    # Forbidden / collision zones: red volumes.  Everything outside the
-    # workspace is a forbidden zone: behind the base, left side, right side.
-    forbidden: '[{"x":-0.175,"y":0.0,"z":0.25,"size_x":0.35,"size_y":0.90,"size_z":0.50,"r":1.0,"g":0.1,"b":0.1,"a":0.35}, {"x":0.20,"y":-0.325,"z":0.25,"size_x":0.40,"size_y":0.25,"size_z":0.50,"r":1.0,"g":0.1,"b":0.1,"a":0.35}, {"x":0.20,"y":0.325,"z":0.25,"size_x":0.40,"size_y":0.25,"size_z":0.50,"r":1.0,"g":0.1,"b":0.1,"a":0.35}]'
+    # Forbidden / collision zones: thin red walls (2cm) marking the
+    # workspace boundary surfaces that must not be crossed:
+    #   back wall  at x=0 (behind the base)
+    #   left wall  at y=-0.20
+    #   right wall at y=+0.20
+    forbidden: '[{"x":-0.01,"y":0.0,"z":0.25,"size_x":0.02,"size_y":0.90,"size_z":0.50,"r":1.0,"g":0.1,"b":0.1,"a":0.45}, {"x":0.20,"y":-0.21,"z":0.25,"size_x":0.40,"size_y":0.02,"size_z":0.50,"r":1.0,"g":0.1,"b":0.1,"a":0.45}, {"x":0.20,"y":0.21,"z":0.25,"size_x":0.40,"size_y":0.02,"size_z":0.50,"r":1.0,"g":0.1,"b":0.1,"a":0.45}]'
 
     # Live joint-angle text labels next to each joint.
     joint_angle_label: true
