@@ -42,8 +42,10 @@ def generate_launch_description() -> LaunchDescription:
     rsp_arg = LaunchConfiguration("with_rsp")
     rviz_arg = LaunchConfiguration("with_rviz")
     dt_arg = LaunchConfiguration("with_dt_layers")
+    bridge_arg = LaunchConfiguration("with_object_bridge")
     target_frame = LaunchConfiguration("target_frame")
     out_file = LaunchConfiguration("out_file")
+    object_file = LaunchConfiguration("object_file")
 
     recorder_args = ["--target-frame", target_frame]
     # Always pass --out-file; the recorder treats an empty string as None so
@@ -57,8 +59,11 @@ def generate_launch_description() -> LaunchDescription:
             DeclareLaunchArgument("with_rsp", default_value="true"),
             DeclareLaunchArgument("with_retime", default_value="true"),
             DeclareLaunchArgument("with_dt_layers", default_value="true"),
+            DeclareLaunchArgument("with_object_bridge", default_value="true"),
             DeclareLaunchArgument("target_frame", default_value="gripper_frame_link"),
             DeclareLaunchArgument("out_file", default_value=""),
+            DeclareLaunchArgument("object_file",
+                                  default_value="/mnt/f/robot_arm_atlas/.tmp/located_object.json"),
             Node(
                 package="so101_description",
                 executable="joint_state_retime.py",
@@ -89,6 +94,14 @@ def generate_launch_description() -> LaunchDescription:
                 output="screen",
                 parameters=[dt_params],
                 condition=IfCondition(dt_arg),
+            ),
+            Node(
+                package="so101_visualization",
+                executable="located_object_bridge.py",
+                name="located_object_bridge",
+                output="screen",
+                arguments=["--file", object_file],
+                condition=IfCondition(bridge_arg),
             ),
             Node(
                 package="rviz2",

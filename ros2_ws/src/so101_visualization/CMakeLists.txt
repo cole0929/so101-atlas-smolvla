@@ -3,7 +3,7 @@ project(so101_visualization)
 
 find_package(ament_cmake REQUIRED)
 
-install(PROGRAMS scripts/ee_trajectory_recorder.py scripts/mock_joint_source.py scripts/digital_twin_layers.py
+install(PROGRAMS scripts/ee_trajectory_recorder.py scripts/mock_joint_source.py scripts/digital_twin_layers.py scripts/located_object_bridge.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

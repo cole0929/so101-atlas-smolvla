@@ -31,6 +31,7 @@ import argparse
 import json
 import math
 import os
+import socket
 import sys
 import time
 from pathlib import Path
@@ -120,7 +121,21 @@ def main() -> None:
     parser.add_argument("--show", action="store_true", help="show debug window")
     parser.add_argument("--interval", type=float, default=0.5)
     parser.add_argument("--table-z", type=float, default=TABLE_Z)
+    parser.add_argument("--udp", action="store_true",
+                        help="send located object JSON over UDP (for WSL RViz bridge)")
+    parser.add_argument("--udp-host", default="192.168.0.1",
+                        help="WSL host that runs located_object_bridge.py")
+    parser.add_argument("--udp-port", type=int, default=15002)
+    parser.add_argument("--file", default=None,
+                        help="write latest object JSON to this file (board side)")
     args = parser.parse_args()
+
+    udp_sock = None
+    if args.udp:
+        udp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        print(f"UDP send enabled -> {args.udp_host}:{args.udp_port}")
+    if args.file:
+        print(f"file output enabled -> {args.file}")
 
     mtx, dist, T_cam2base, reproj = load_calib()
     print(f"intrinsics reproj: {reproj} px")
@@ -198,7 +213,15 @@ def main() -> None:
             else:
                 text = f"obj: ({P[0]*100:.1f}, {P[1]*100:.1f}, {P[2]*100:.1f}) cm"
                 print(text + f"  area={area:.0f}px", flush=True)
-                publish(P, text)
+                payload = {
+                    "x": float(P[0]), "y": float(P[1]), "z": float(P[2]),
+                    "text": text, "time": time.time(),
+                }
+                if udp_sock is not None:
+                    udp_sock.sendto(json.dumps(payload).encode("utf-8"),
+                                    (args.udp_host, args.udp_port))
+                if args.file:
+                    Path(args.file).write_text(json.dumps(payload), encoding="utf-8")
 
             if args.show:
                 vis = frame.copy()
