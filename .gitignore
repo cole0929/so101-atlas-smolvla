@@ -21,6 +21,7 @@ ros2_ws/log/
 *.tar
 Ascend AI Devkit Imager/
 
-# ---- 临时调试文件 ----
-*.png
+# ---- 临时调试文件（根目录）----
+/image_check.png
+*.tmp_img_*
 
