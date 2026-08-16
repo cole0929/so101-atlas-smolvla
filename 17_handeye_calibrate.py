@@ -270,22 +270,26 @@ def main() -> None:
             print(f"[{cam}] camera->tip t={np.round(t.reshape(3), 4).tolist()} "
                   f"q={tuple(round(x, 4) for x in matrix_to_quat(R))}")
         else:
-            # eye-to-hand: solve camera->base
-            R, t = cv2.calibrateHandEye(R_g2b, t_g2b, R_t2c, t_t2c,
+            # eye-to-hand: calibrateHandEye expects the SAME X convention, so
+            # feed it base->gripper (inverse of FK) and camera->board (inverse
+            # of PnP).  The returned X is then camera->base directly.
+            R_b2g_list = [R.T for R in R_g2b]
+            t_b2g_list = [-R.T @ t for R, t in zip(R_g2b, t_g2b)]
+            R_c2t_list = [R.T for R in R_t2c]
+            t_c2t_list = [-R.T @ t for R, t in zip(R_t2c, t_t2c)]
+            R, t = cv2.calibrateHandEye(R_b2g_list, t_b2g_list, R_c2t_list, t_c2t_list,
                                         method=cv2.CALIB_HAND_EYE_TSAI)
-            R_c2b = R.T
-            t_c2b = -R_c2b @ t.reshape(3)
             T4 = np.eye(4)
-            T4[:3, :3] = R_c2b
-            T4[:3, 3] = t_c2b
+            T4[:3, :3] = R
+            T4[:3, 3] = t.reshape(3)
             extrinsics[cam] = {
                 "mode": "eye_to_hand",
-                "translation_m": t_c2b.tolist(),
-                "quaternion": matrix_to_quat(R_c2b),
+                "translation_m": t.reshape(3).tolist(),
+                "quaternion": matrix_to_quat(R),
                 "T": T4.tolist(),
             }
-            print(f"[{cam}] camera->base t={np.round(t_c2b, 4).tolist()} "
-                  f"q={tuple(round(x, 4) for x in matrix_to_quat(R_c2b))}")
+            print(f"[{cam}] camera->base t={np.round(t.reshape(3), 4).tolist()} "
+                  f"q={tuple(round(x, 4) for x in matrix_to_quat(R))}")
 
         report.append(f"{cam}: {len(usable)} usable, reproj={err:.3f} px")
 
