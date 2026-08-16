@@ -1,0 +1,25 @@
+# Digital-twin overlay layer configuration for SO-ARM101 (project 1).
+# Load with:
+#   ros2 run so101_visualization digital_twin_layers.py \
+#     --ros-args --params-file <pkg share>/config/dt_layers.yaml
+#
+# NOTE: Humble's rcl param parser does NOT support arrays of maps, so the
+# boundary / forbidden volumes are passed as JSON strings and decoded inside
+# the node.  Edit the JSON to tune positions / sizes.
+
+digital_twin_layers:
+  ros__parameters:
+    frame_id: base_link
+    publish_rate: 10.0
+
+    # Workspace boundary: single semi-transparent green volume (meters).
+    # x/y/z = center, size_* = box extent, a = alpha (0 transparent, 1 solid).
+    boundary: '[{"x":0.0,"y":0.0,"z":0.25,"size_x":0.7,"size_y":0.7,"size_z":0.6,"r":0.2,"g":0.8,"b":0.3,"a":0.12,"label":"workspace"}]'
+
+    # Forbidden / collision zones: red volumes.  Add more objects to the JSON
+    # array to declare extra zones (e.g. behind the base, around the operator).
+    forbidden: '[{"x":0.0,"y":0.0,"z":-0.05,"size_x":0.35,"size_y":0.35,"size_z":0.1,"r":1.0,"g":0.1,"b":0.1,"a":0.35}]'
+
+    # Live joint-angle text labels next to each joint.
+    joint_angle_label: true
+    joints: [shoulder_pan, shoulder_lift, elbow_flex, wrist_flex, wrist_roll, gripper]

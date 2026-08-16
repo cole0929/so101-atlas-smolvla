@@ -17,6 +17,8 @@ Options:
                              /joint_states_local)
   target_frame (default gripper_frame_link)  tracked end-effector frame
   out_file     (default empty) optional CSV export path for the recorder
+  with_dt_layers (default true) start the digital-twin overlay node
+                   (workspace boundary, forbidden zones, joint-angle labels)
 """
 
 from pathlib import Path
@@ -34,10 +36,12 @@ def generate_launch_description() -> LaunchDescription:
     viz_share = Path(get_package_share_directory("so101_visualization"))
     robot_description = (desc_share / "urdf" / "so101.urdf").read_text(encoding="utf-8")
     rviz_config = str(viz_share / "rviz" / "trajectory.rviz")
+    dt_params = str(viz_share / "config" / "dt_layers.yaml")
 
     retime_arg = LaunchConfiguration("with_retime")
     rsp_arg = LaunchConfiguration("with_rsp")
     rviz_arg = LaunchConfiguration("with_rviz")
+    dt_arg = LaunchConfiguration("with_dt_layers")
     target_frame = LaunchConfiguration("target_frame")
     out_file = LaunchConfiguration("out_file")
 
@@ -52,6 +56,7 @@ def generate_launch_description() -> LaunchDescription:
             DeclareLaunchArgument("with_rviz", default_value="true"),
             DeclareLaunchArgument("with_rsp", default_value="true"),
             DeclareLaunchArgument("with_retime", default_value="true"),
+            DeclareLaunchArgument("with_dt_layers", default_value="true"),
             DeclareLaunchArgument("target_frame", default_value="gripper_frame_link"),
             DeclareLaunchArgument("out_file", default_value=""),
             Node(
@@ -76,6 +81,14 @@ def generate_launch_description() -> LaunchDescription:
                 name="ee_trajectory_recorder",
                 output="screen",
                 arguments=recorder_args,
+            ),
+            Node(
+                package="so101_visualization",
+                executable="digital_twin_layers.py",
+                name="digital_twin_layers",
+                output="screen",
+                parameters=[dt_params],
+                condition=IfCondition(dt_arg),
             ),
             Node(
                 package="rviz2",

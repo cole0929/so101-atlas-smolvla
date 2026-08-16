@@ -3,11 +3,11 @@ project(so101_visualization)
 
 find_package(ament_cmake REQUIRED)
 
-install(PROGRAMS scripts/ee_trajectory_recorder.py scripts/mock_joint_source.py
+install(PROGRAMS scripts/ee_trajectory_recorder.py scripts/mock_joint_source.py scripts/digital_twin_layers.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
-install(DIRECTORY launch rviz
+install(DIRECTORY launch rviz config
   DESTINATION share/${PROJECT_NAME}
 )
 
