@@ -1,0 +1,64 @@
+{
+  "status": "PASS",
+  "model": "/root/lerobot_project/models/smolvla_yellow_block_atlas_v2_clean_a100/020000/pretrained_model",
+  "dataset": "/root/lerobot_project/datasets/admin/smolvla_yellow_block_atlas_v2_clean",
+  "episode": 0,
+  "frame": 0,
+  "task": "Pick up the yellow block, place it inside the black box, release it, then return the arm to its starting position.",
+  "seed": 1000,
+  "device": "cpu",
+  "torch_version": "2.7.1+cpu",
+  "threads": 4,
+  "dataset_frame_loaded_s": 0.8754006119997939,
+  "model_loaded_s": 45.877394153998466,
+  "first_inference_s": 73.91344129299978,
+  "steady_inference_mean_s": 73.67641540330006,
+  "steady_inference_min_s": 73.4060430440004,
+  "steady_inference_max_s": 73.87067506300082,
+  "repeat_max_abs_diff": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "deterministic": true,
+  "peak_rss_mib": 2563.25,
+  "raw_action_shape": [
+    50,
+    6
+  ],
+  "action_shape": [
+    50,
+    6
+  ],
+  "expected_action_shape": [
+    50,
+    6
+  ],
+  "shape_ok": true,
+  "finite": true,
+  "action_min": -105.14310455322266,
+  "action_max": 92.20984649658203,
+  "per_joint_min": [
+    -6.054932594299316,
+    -105.14310455322266,
+    -4.000843048095703,
+    71.07196807861328,
+    -3.819350242614746,
+    2.2364702224731445
+  ],
+  "per_joint_max": [
+    15.085163116455078,
+    15.876535415649414,
+    92.20984649658203,
+    79.7550277709961,
+    3.8082072734832764,
+    53.008174896240234
+  ]
+}

@@ -1,0 +1,16 @@
+[Unit]
+Description=SO-ARM101 command executor (UDP -> follower serial goals)
+After=network-online.target so101-command-bridge.service so101-joint-bridge.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/lerobot_project
+ExecStart=/opt/lerobot061/bin/python /root/lerobot_project/so101_command_executor.py --fps 30
+KillMode=control-group
+TimeoutStopSec=5
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,1 @@
+Pick up the yellow block, place it inside the black box, release it, then return the arm to its starting position.

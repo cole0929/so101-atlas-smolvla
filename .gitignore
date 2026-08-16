@@ -1,0 +1,22 @@
+# ---- 本地运行 / 临时 ----
+.wsl/
+.tmp/
+downloads/
+.x11/
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+
+# ---- ROS2 构建产物（源码在 ros2_ws/src，构建可随时重建）----
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
+
+# ---- 外部二进制制品（目录保留作离线备份，不入版本库）----
+*.whl
+*.exe
+*.msi
+*.deb
+*.tar
+Ascend AI Devkit Imager/

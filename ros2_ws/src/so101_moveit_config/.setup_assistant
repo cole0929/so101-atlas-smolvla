@@ -1,0 +1,10 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: so101_moveit_config
+    relative_path: config/so101.urdf.xacro
+  srdf:
+    relative_path: config/so101.srdf
+  package_settings:
+    author_name: robot_arm_atlas
+    author_email: local@robot-arm.invalid
+    generated_timestamp: 2026-08-15T14:30:00Z

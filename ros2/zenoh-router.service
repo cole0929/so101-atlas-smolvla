@@ -1,0 +1,16 @@
+[Unit]
+Description=Zenoh router for Atlas and WSL ROS 2
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+Environment=RMW_IMPLEMENTATION=rmw_zenoh_cpp
+Environment=ZENOH_CONFIG_OVERRIDE=listen/endpoints=["tcp/0.0.0.0:7447"]
+ExecStart=/bin/bash -lc 'source /opt/ros/humble/setup.bash && exec ros2 run rmw_zenoh_cpp rmw_zenohd'
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
+
