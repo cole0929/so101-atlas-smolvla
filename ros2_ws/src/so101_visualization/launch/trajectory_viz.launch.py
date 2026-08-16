@@ -16,6 +16,7 @@ Options:
                              display/real-arm launch already provides
                              /joint_states_local)
   target_frame (default gripper_frame_link)  tracked end-effector frame
+  out_file     (default empty) optional CSV export path for the recorder
 """
 
 from pathlib import Path
@@ -38,6 +39,13 @@ def generate_launch_description() -> LaunchDescription:
     rsp_arg = LaunchConfiguration("with_rsp")
     rviz_arg = LaunchConfiguration("with_rviz")
     target_frame = LaunchConfiguration("target_frame")
+    out_file = LaunchConfiguration("out_file")
+
+    recorder_args = ["--target-frame", target_frame]
+    # Always pass --out-file; the recorder treats an empty string as None so
+    # no CSV is written unless the user supplies out_file:=<path>.
+    recorder_args.append("--out-file")
+    recorder_args.append(out_file)
 
     return LaunchDescription(
         [
@@ -45,6 +53,7 @@ def generate_launch_description() -> LaunchDescription:
             DeclareLaunchArgument("with_rsp", default_value="true"),
             DeclareLaunchArgument("with_retime", default_value="true"),
             DeclareLaunchArgument("target_frame", default_value="gripper_frame_link"),
+            DeclareLaunchArgument("out_file", default_value=""),
             Node(
                 package="so101_description",
                 executable="joint_state_retime.py",
@@ -66,7 +75,7 @@ def generate_launch_description() -> LaunchDescription:
                 executable="ee_trajectory_recorder.py",
                 name="ee_trajectory_recorder",
                 output="screen",
-                arguments=["--target-frame", target_frame],
+                arguments=recorder_args,
             ),
             Node(
                 package="rviz2",

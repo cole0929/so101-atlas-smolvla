@@ -492,8 +492,11 @@ def parse_args(argv=None) -> argparse.Namespace:
     parser.add_argument("--speed-window", type=int, default=5,
                         help="moving-average window for velocity smoothing (default: 5)")
     parser.add_argument("--out-file", default=None,
-                        help="optional CSV output path for samples")
-    return parser.parse_args(argv)
+                        help="optional CSV output path for samples (empty string disables)")
+    args = parser.parse_args(argv)
+    if args.out_file == "":
+        args.out_file = None
+    return args
 
 
 def main() -> None:
