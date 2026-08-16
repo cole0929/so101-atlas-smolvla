@@ -1,0 +1,6 @@
+Error: OpenAI-compatible API returned non-JSON output: {
+  "layout": {
+   "regions": [
+   {"reading_order":1,"text":"[INFO] Detected serial ports:","type":"heading"},
+   {"reading_order":2,"text":"/dev/ttyACM1: serial='5C82108953', USB Single Serial","type":"paragraph"},
+   {"reading_order":3,"text":"/dev/ttyACM0: serial='5C4C123788', USB Single Serial"...

@@ -450,4 +450,22 @@
     </actuator>
   </transmission> 
 
+  <!-- Hand-eye camera (wrist, USB PID 9005) calibrated 2026-08-16 -->
+  <!-- eye-in-hand: camera -> gripper_frame_link (reproj 0.46 px) -->
+  <link name="handeye_camera_link"/>
+  <joint name="handeye_camera_joint" type="fixed">
+    <origin xyz="-0.003490 0.063697 -0.091141" rpy="-0.427446 -0.058455 2.988576"/>
+    <parent link="gripper_frame_link"/>
+    <child link="handeye_camera_link"/>
+  </joint>
+
+  <!-- Front overhead camera (USB PID 9221) calibrated 2026-08-16 -->
+  <!-- eye-to-hand: camera -> base_link (reproj 6.42 px, wide-angle) -->
+  <link name="front_camera_link"/>
+  <joint name="front_camera_joint" type="fixed">
+    <origin xyz="-0.036676 -0.101546 0.011455" rpy="0.121616 -0.299542 -1.591590"/>
+    <parent link="base_link"/>
+    <child link="front_camera_link"/>
+  </joint>
+
 </robot>
