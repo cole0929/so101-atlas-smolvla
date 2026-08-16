@@ -1,9 +1,0 @@
-{
-  "method": "geometric_v2",
-  "board_center_base_m": [
-    0.293,
-    0.0,
-    0.0
-  ],
-  "board_yaw_deg": 170,
-  "reprojection_error_px": 
