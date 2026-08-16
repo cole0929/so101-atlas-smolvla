@@ -459,11 +459,12 @@
     <child link="handeye_camera_link"/>
   </joint>
 
-  <!-- Front overhead camera (USB PID 9221) calibrated 2026-08-16 -->
-  <!-- eye-to-hand: camera -> base_link (reproj 6.42 px, wide-angle) -->
+  <!-- Front overhead camera (USB PID 9221) calibrated 2026-08-16 v2 -->
+  <!-- eye-to-hand: camera -> base_link; checkerboard-on-wrist dataset -->
+  <!-- intrinsics v2 reproj 0.74 px; extrinsic v2 15 poses -->
   <link name="front_camera_link"/>
   <joint name="front_camera_joint" type="fixed">
-    <origin xyz="-0.036676 -0.101546 0.011455" rpy="0.121616 -0.299542 -1.591590"/>
+    <origin xyz="-0.036287 -0.066093 0.108881" rpy="-0.703520 -0.876047 -0.842733"/>
     <parent link="base_link"/>
     <child link="front_camera_link"/>
   </joint>

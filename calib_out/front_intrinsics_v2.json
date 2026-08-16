@@ -1,0 +1,67 @@
+{
+  "camera_matrix": [
+    [
+      405.321097306777,
+      0.0,
+      328.6855043266287
+    ],
+    [
+      0.0,
+      405.196515143691,
+      251.46652333044855
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "dist_coeffs": [
+    -0.42535154162189476,
+    0.5347144893823034,
+    3.6295541402444954e-05,
+    -0.0013143962981036006,
+    -0.5054759245439419
+  ],
+  "reprojection_error_px": 0.7403,
+  "usable_samples": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17
+  ],
+  "usable_names": [
+    "sample_000.jpg",
+    "sample_001.jpg",
+    "sample_002.jpg",
+    "sample_003.jpg",
+    "sample_004.jpg",
+    "sample_005.jpg",
+    "sample_006.jpg",
+    "sample_007.jpg",
+    "sample_008.jpg",
+    "sample_009.jpg",
+    "sample_010.jpg",
+    "sample_011.jpg",
+    "sample_012.jpg",
+    "sample_013.jpg",
+    "sample_014.jpg",
+    "sample_015.jpg",
+    "sample_016.jpg",
+    "sample_017.jpg"
+  ]
+}
