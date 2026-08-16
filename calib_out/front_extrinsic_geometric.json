@@ -1,37 +1,25 @@
 {
-  "method": "geometric_v3_axis_fixed",
-  "board_center_base_m": [
-    0.293,
-    0.0,
-    0.0
-  ],
-  "board_yaw_deg": 170,
+  "method": "geometric_v4_x_flip_only",
   "translation_m": [
     -0.004,
     -0.052,
     0.383
   ],
-  "quaternion": [
-    -0.0002531523884167139,
-    0.9875474672136018,
-    0.15189143305002847,
-    -0.04101068692350769
-  ],
   "T": [
     [
-      -0.997,
+      0.997,
       0.012,
       -0.081,
       -0.004
     ],
     [
-      -0.013,
+      0.013,
       0.954,
       0.3,
       -0.052
     ],
     [
-      0.081,
+      -0.081,
       0.3,
       -0.95,
       0.383
@@ -43,5 +31,5 @@
       1.0
     ]
   ],
-  "notes": "geometric single-shot, camera Z axis flipped via Ry(pi); object at (13.6, 13.1)cm in workspace"
+  "notes": "kept Z-down from v3, flipped only camera X axis"
 }

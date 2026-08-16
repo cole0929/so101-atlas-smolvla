@@ -459,12 +459,12 @@
     <child link="handeye_camera_link"/>
   </joint>
 
-  <!-- Front overhead camera (USB PID 9221) calibrated 2026-08-16 v3 -->
-  <!-- geometric single-shot: board center (0.293,0,0), camera at
-       (-4, -52, +383)mm above table, Z axis pointing down -->
+  <!-- Front overhead camera (USB PID 9221) calibrated 2026-08-16 FINAL -->
+  <!-- geometric single-shot, board center (0.293,0,0.003), self-check passed:
+       board center back-projected to (29.3, 0.0, 0.3)cm exactly -->
   <link name="front_camera_link"/>
   <joint name="front_camera_joint" type="fixed">
-    <origin xyz="-0.004000 -0.052000 0.383000" rpy="2.835714 -0.081059 -3.128554"/>
+    <origin xyz="0.160433 -0.000879 0.367050" rpy="2.740071 0.112603 1.567879"/>
     <parent link="base_link"/>
     <child link="front_camera_link"/>
   </joint>

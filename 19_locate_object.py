@@ -212,7 +212,7 @@ def main() -> None:
                 print("intersection failed", flush=True)
             else:
                 text = f"obj: ({P[0]*100:.1f}, {P[1]*100:.1f}, {P[2]*100:.1f}) cm"
-                print(text + f"  area={area:.0f}px", flush=True)
+                print(text + f"  area={area:.0f}px  px=({cx:.0f},{cy:.0f})", flush=True)
                 payload = {
                     "x": float(P[0]), "y": float(P[1]), "z": float(P[2]),
                     "text": text, "time": time.time(),
