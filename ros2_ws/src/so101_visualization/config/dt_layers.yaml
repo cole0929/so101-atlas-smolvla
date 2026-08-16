@@ -13,12 +13,14 @@ digital_twin_layers:
     publish_rate: 10.0
 
     # Workspace boundary: single semi-transparent green volume (meters).
-    # x/y/z = center, size_* = box extent, a = alpha (0 transparent, 1 solid).
-    boundary: '[{"x":0.0,"y":0.0,"z":0.25,"size_x":0.7,"size_y":0.7,"size_z":0.6,"r":0.2,"g":0.8,"b":0.3,"a":0.12,"label":"workspace"}]'
+    # Real workspace measured 2026-08-16: forward 0.40m, left/right 0.20m
+    # from the base center; height 0..0.50m assumed.
+    # center (0.20, 0, 0.25), size (0.40, 0.40, 0.50)
+    boundary: '[{"x":0.20,"y":0.0,"z":0.25,"size_x":0.40,"size_y":0.40,"size_z":0.50,"r":0.2,"g":0.8,"b":0.3,"a":0.12,"label":"workspace"}]'
 
-    # Forbidden / collision zones: red volumes.  Add more objects to the JSON
-    # array to declare extra zones (e.g. behind the base, around the operator).
-    forbidden: '[{"x":0.0,"y":0.0,"z":-0.05,"size_x":0.35,"size_y":0.35,"size_z":0.1,"r":1.0,"g":0.1,"b":0.1,"a":0.35}]'
+    # Forbidden / collision zones: red volumes.  Everything outside the
+    # workspace is a forbidden zone: behind the base, left side, right side.
+    forbidden: '[{"x":-0.175,"y":0.0,"z":0.25,"size_x":0.35,"size_y":0.90,"size_z":0.50,"r":1.0,"g":0.1,"b":0.1,"a":0.35}, {"x":0.20,"y":-0.325,"z":0.25,"size_x":0.40,"size_y":0.25,"size_z":0.50,"r":1.0,"g":0.1,"b":0.1,"a":0.35}, {"x":0.20,"y":0.325,"z":0.25,"size_x":0.40,"size_y":0.25,"size_z":0.50,"r":1.0,"g":0.1,"b":0.1,"a":0.35}]'
 
     # Live joint-angle text labels next to each joint.
     joint_angle_label: true
