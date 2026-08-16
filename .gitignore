@@ -20,3 +20,7 @@ ros2_ws/log/
 *.deb
 *.tar
 Ascend AI Devkit Imager/
+
+# ---- 临时调试文件 ----
+*.png
+
