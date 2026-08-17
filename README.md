@@ -51,6 +51,9 @@
 
 ```text
 robot_arm_atlas/
+├── README.md                 # 仓库门面（本文档）
+├── REPRODUCE.md              # 从零复现指南（有硬件者先读）
+├── LICENSE                   # MIT License
 ├── docs/                     # 技术文档 + 零基础教程（docs/教程/）
 ├── ros2_ws/src/              # ROS2 工作空间源码
 │   ├── so101_description/    #   官方 URDF + STL 模型
@@ -73,6 +76,7 @@ robot_arm_atlas/
 > 完整部署文档：`docs/Atlas_SmolVLA_NPU部署与实机推理技术开发文档_2026-08-14.md`
 > 与 `docs/Atlas_ROS2_SO101部署与使用技术文档_2026-08-15.md`
 >
+> **有全套硬件想复现？先读 [`REPRODUCE.md`](REPRODUCE.md)**（从零复现指南）。
 > 零基础学习者从 `docs/教程/README.md` 开始。
 
 ### 板端（Atlas 200I DK A2）
@@ -122,4 +126,5 @@ ros2 launch so101_visualization trajectory_viz.launch.py
 
 ## License
 
-本项目代码仅供学习研究使用。SO-ARM101 官方资料、LeRobot、SmolVLA 版权归各自所有者。
+本项目代码采用 [MIT License](LICENSE)，仅供学习研究使用。
+SO-ARM101 官方资料、LeRobot、SmolVLA 版权归各自所有者。
