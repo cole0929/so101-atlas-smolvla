@@ -3,6 +3,7 @@
 .tmp/
 downloads/
 .x11/
+.diagnostics/
 
 # ---- Python ----
 __pycache__/
@@ -20,11 +21,19 @@ ros2_ws/log/
 *.deb
 *.tar
 Ascend AI Devkit Imager/
+cann_py310_wheels/
+offline_wheels/
+
+# ---- 官方 SO-ARM101 资料（2.9GB 第三方版权资料，不含入仓库）----
+SO-ARM101开源6轴机械臂/
 
 # ---- 临时调试文件（根目录）----
 /image_check.png
 *.tmp_img_*
+.tmp_*.png
 
+# ---- 教学素材中间稿（教程正文已吸收）----
+docs/教学素材*.md
 
 # ---- Obsidian 本地配置 ----
 .obsidian/
